@@ -2063,34 +2063,76 @@ Google map
 }
 
 /*--------------------------------------------------------------
-	Testimonial
+	Members
 --------------------------------------------------------------*/
-.testimonial:before {
-  background: rgba(2, 2, 2, 0.4);
+.members {
+  overflow: visible;
+  height: 120vh;
+  user-select: none;
+}
+.members .big-circle {
+  --radius: 50px;
+  position: absolute;
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  background-color: #fff;
+  border-radius: 50%;
+  top: calc(50% - var(--radius));
+  left: calc(50% - var(--radius));
+}
+.members .small-circle {
+  --radius: 30px;
+  position: absolute;
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  background-color: #fff;
+  border-radius: 50%;
+  top: calc(50% - var(--radius));
+  left: calc(50% - var(--radius));
+  transform: rotate(calc(var(--i) / var(--layer) * 60deg))
+    translateY(calc(-20px - var(--layer) * 80px));
+  z-index: 0;
+  cursor: pointer;
 }
 
-.testimonials-slider {
-  position: relative;
+.small-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 从长边20%处裁剪 */
+  object-position: 50% 20%;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: rotate(calc(var(--i) / var(--layer) * -60deg));
 }
 
-.testimonial-text {
+.members .small-circle:hover,
+.members .small-circle:active {
+  z-index: 1;
+}
+
+.small-circle:hover img {
+  transform: rotate(calc(var(--i) / var(--layer) * -60deg)) scale(5);
+}
+
+.small-circle span {
+  display: none;
+  background-color: black;
+  width: 200px;
+  color: #fff;
   text-align: center;
-  font-style: normal;
-  font-size: 18px;
+  border-radius: 6px;
+  padding: 2px;
+  position: absolute;
+  top: 0;
+  transform: translateX(calc(-100px + var(--radius)))
+    rotate(calc(var(--i) / var(--layer) * -60deg));
+  opacity: 0.8;
+  pointer-events: none;
 }
 
-.testimonial-caption {
-  text-align: center;
-  padding: 10px 0 0;
-}
-
-.testimonial-title {
-  font-size: 14px;
-}
-
-.testimonial-descr {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 11px;
+.small-circle:active span {
+  display: block;
 }
 
 /*--------------------------------------------------------------
